@@ -10,11 +10,11 @@ $conn = new mysqli($servername, $username, $password, $dbname);
 
 // ตรวจสอบการเชื่อมต่อ
 if ($conn->connect_error) {
-  die("Connection failed: " . $conn->connect_error);
+  die ("Connection failed: " . $conn->connect_error);
 }
 
 // ประมวลผลการเพิ่มข้อมูล
-if (isset($_POST["submit"])) {
+if (isset ($_POST["submit"])) {
   $name_product = $_POST["name_product"];
   $product_detail = $_POST["product_detail"];
   $product_price = $_POST["product_price"];
@@ -55,12 +55,14 @@ if (isset($_POST["submit"])) {
 
 <!DOCTYPE html>
 <html lang="th">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>เพิ่มสินค้า</title>
   <link rel="stylesheet" href="../home/style/styleforadmin.css">
 </head>
+
 <body>
   <h1>เพิ่มสินค้า</h1>
   <form action="addProduct.php" method="post" enctype="multipart/form-data">
@@ -94,9 +96,10 @@ if (isset($_POST["submit"])) {
   <br><br>
   <br>
   <?php
-  require("footer.php")
-  ?>
+  require ("footer.php")
+    ?>
 </body>
+
 </html>
 
 <?php

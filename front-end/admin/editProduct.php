@@ -10,7 +10,7 @@ $conn = new mysqli($servername, $username, $password, $dbname);
 
 // ตรวจสอบการเชื่อมต่อ
 if ($conn->connect_error) {
-  die("Connection failed: " . $conn->connect_error);
+  die ("Connection failed: " . $conn->connect_error);
 }
 
 $product_id = $_GET["product_ID"];
@@ -27,18 +27,18 @@ $current_type = $product['type'];
 // ดึงข้อมูลประเภทสินค้า
 $sql_type = "SELECT type FROM product";
 $result_type = $conn->query($sql_type);
-if (isset($_POST["submit"])) {
+if (isset ($_POST["submit"])) {
   $name_product = $_POST["name_product"];
   $product_detail = $_POST["product_detail"];
   $product_price = $_POST["product_price"];
   $product_brand = $_POST["product_brand"];
   $type = $_POST["type"];
 
-// อัพโหลดรูปภาพ
-if ($_FILES["image_path"]["name"] != "") {
-  $image_path = "image/" . $_FILES["image_path"]["name"];
-  $target_dir = "image/";
-  $target_file = $target_dir . basename($image_path);
+  // อัพโหลดรูปภาพ
+  if ($_FILES["image_path"]["name"] != "") {
+    $image_path = "image/" . $_FILES["image_path"]["name"];
+    $target_dir = "image/";
+    $target_file = $target_dir . basename($image_path);
 
     // ตรวจสอบประเภทไฟล์
     $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
@@ -68,12 +68,14 @@ if ($_FILES["image_path"]["name"] != "") {
 ?>
 <!DOCTYPE html>
 <html lang="th">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>แก้ไขข้อมูลสินค้า</title>
   <link rel="stylesheet" href="../home/style/styleforadmin.css">
 </head>
+
 <body>
   <h1>แก้ไขข้อมูลสินค้า</h1>
   <form action="editProduct.php?product_ID=<?php echo $product_id; ?>" method="post" enctype="multipart/form-data">
@@ -85,12 +87,15 @@ if ($_FILES["image_path"]["name"] != "") {
     <label for="product_detail">รายละเอียดสินค้า:</label><br>
     <textarea name="product_detail" id="product_detail"><?php echo $product['product_detail']; ?></textarea><br><br>
     <label for="product_price">ราคา:</label><br>
-    <input type="number" name="product_price" id="product_price" value="<?php echo $product['product_price'];?>"><br><br>
+    <input type="number" name="product_price" id="product_price"
+      value="<?php echo $product['product_price']; ?>"><br><br>
     <label for="product_brand">แบรนด์:</label><br>
     <input type="text" name="product_brand" id="product_brand" value="<?php echo $product['product_brand']; ?>"><br><br>
     <label for="type">ประเภท:</label><br>
     <select name="type" id="type">
-      <option value="<?php echo $current_type; ?>" selected><?php echo $current_type; ?></option>
+      <option value="<?php echo $current_type; ?>" selected>
+        <?php echo $current_type; ?>
+      </option>
       <option value="โน๊ตบุ๊ค">โน๊ตบุ๊ค</option>
       <option value="โทรศัพท์">โทรศัพท์</option>
       <option value="คีย์บอร์ด">คีย์บอร์ด</option>
@@ -102,11 +107,12 @@ if ($_FILES["image_path"]["name"] != "") {
   </form>
   <br><br>
   <br><br>
-  
+
   <?php
-  require("footer.php")
-  ?>
+  require ("footer.php")
+    ?>
 </body>
+
 </html>
 
 <?php

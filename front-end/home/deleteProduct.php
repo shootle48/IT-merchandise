@@ -1,6 +1,6 @@
 <?php
 session_start();
-require("../../back-end/database/db.php");
+require ("../../back-end/database/db.php");
 
 $productID = $_GET['productID'];
 $userID = $_GET['userID'];
@@ -19,6 +19,5 @@ mysqli_stmt_execute($stmt_delete_cart);
 mysqli_stmt_close($stmt_delete_cart);
 
 // Redirect to cart page
-echo '<script>window.location = "cart.php?fname='.$fname.'&userID='.$userID.'"</script>';
+echo '<script>window.location = "cart.php?fname=' . $fname . '&userID=' . $userID . '"</script>';
 ?>
-

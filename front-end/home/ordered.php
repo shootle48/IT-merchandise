@@ -1,5 +1,5 @@
 <?php
-require("../../back-end/database/db.php");
+require ("../../back-end/database/db.php");
 $userID = $_GET['userID'];
 $fname = $_GET['fname'];
 $name = $_POST['name'];
@@ -13,6 +13,6 @@ mysqli_stmt_bind_param($stmt, "sssss", $userID, $name, $tel, $address, $totalPri
 mysqli_stmt_execute($stmt);
 mysqli_stmt_close($stmt);
 
-echo '<script>window.location = "slip.php?fname='.$fname.'&userID='.$userID.'"</script>';
+echo '<script>window.location = "slip.php?fname=' . $fname . '&userID=' . $userID . '"</script>';
 
 ?>

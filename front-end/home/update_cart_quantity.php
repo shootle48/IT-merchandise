@@ -1,9 +1,9 @@
 <?php
-require("../../back-end/database/db.php");
-require("user-info.php");
+require ("../../back-end/database/db.php");
+require ("user-info.php");
 
 // Check if productID and quantity are set
-if (isset($_POST['productID'], $_POST['quantity'])) {
+if (isset ($_POST['productID'], $_POST['quantity'])) {
     $productID = $_POST['productID'];
     $quantity = $_POST['quantity'];
 

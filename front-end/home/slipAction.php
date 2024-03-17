@@ -4,10 +4,10 @@ $userID = $_GET['userID'];
 
 $db = new mysqli("localhost", "root", "", "it-merchandise");
 if (!$db) {
-    die("Connection failed: " . mysqli_connect_error());
+    die ("Connection failed: " . mysqli_connect_error());
 }
 
-if (isset($_FILES["image"])) {
+if (isset ($_FILES["image"])) {
     $file = $_FILES["image"];
     $filename = $file["name"];
 
@@ -44,7 +44,7 @@ if (isset($_FILES["image"])) {
 }
 
 // Redirect the user after processing
-echo '<script>window.location = "bill.php?fname='.$fname.'&userID='.$userID.'"</script>';
+echo '<script>window.location = "bill.php?fname=' . $fname . '&userID=' . $userID . '"</script>';
 
 $db->close();
 ?>

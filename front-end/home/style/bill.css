@@ -1,41 +1,45 @@
-*{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-body{
-    background-color: #F3E4FF;
+body {
+  background-color: #f3e4ff;
 }
 
 .Container {
-    margin: 40px auto;
-    width: fit-content;
-    padding: 1.5rem;
-    background-color: #fff;
-    border-radius: 10px;
+  margin: 40px auto;
+  width: fit-content;
+  padding: 1.5rem;
+  border-radius: 10px;
 }
 
 .ShowDetail {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .header {
-    margin: 1.2rem auto;
+  margin: 1.2rem auto;
 }
 
 .body {
-    font-size: 1.2rem;
-    font-weight: bold;
-    width: 500px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 2rem;
+  font-size: 1.2rem;
+  font-weight: bold;
 }
 
 .detail {
-    display: flex;
-    flex-direction: column;
-    gap: .5rem;
+  border-radius: 5px;
+  padding: 2rem;
+  background-color: #fff;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
 }
 
 .billID,
@@ -43,20 +47,20 @@ body{
 .tel,
 .address,
 .productShow,
-.total{
-    font-weight: lighter;
+.total {
+  font-weight: lighter;
 }
 
 .btn-home {
-    margin-top: 1rem;
-    display: flex;
-    justify-content: center;
-    background-color: #5D00A7;
-    padding: .5rem;
-    border-radius: 5px;
-    cursor: pointer;
+  margin-top: 1rem;
+  display: flex;
+  justify-content: center;
+  background-color: #5d00a7;
+  padding: 0.5rem;
+  border-radius: 5px;
+  cursor: pointer;
 }
 
 p {
-    color: #fff;
+  color: #fff;
 }

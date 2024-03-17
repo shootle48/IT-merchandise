@@ -3,10 +3,10 @@
 // เชื่อมต่อกับ database
 $servername = "localhost";
 $dbname = "it-merchandise";
-$conn = new mysqli($servername,'root' , '' , $dbname);
+$conn = new mysqli($servername, 'root', '', $dbname);
 
 if ($conn->connect_error) {
-   die("Connection failed: " . $conn->connect_error);
+    die ("Connection failed: " . $conn->connect_error);
 }
 
 
@@ -31,10 +31,10 @@ if (!$stmt->execute()) {
 
 if ($stmt->affected_rows > 0) {
     echo "<p>เพิ่มสินค้าสำเร็จ!</p>";
-    echo "<a href='Productlist.php". "'>ไปหน้ารายการสินค้า</a>";
+    echo "<a href='Productlist.php" . "'>ไปหน้ารายการสินค้า</a>";
 } else {
     echo "<p>เกิดข้อผิดพลาด! ไม่สามารถเพิ่มสินค้าได้</p>";
-    echo "<a href='Productlist.php". "'>ไปหน้ารายการสินค้า</a>";
+    echo "<a href='Productlist.php" . "'>ไปหน้ารายการสินค้า</a>";
 }
 
 // ปิด connection

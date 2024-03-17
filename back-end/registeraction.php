@@ -5,7 +5,7 @@ $email = $_POST['email'];
 $password = $_POST['password'];
 $hashPassword = hash('sha256', $password);
 
-require("database/db.php");
+require ("database/db.php");
 
 $sqlCheck = "SELECT * FROM user_info WHERE email = '$email'";
 $resultCheck = mysqli_query($connection, $sqlCheck);

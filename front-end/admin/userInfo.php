@@ -8,7 +8,7 @@ $dbname = "it-merchandise";
 $conn = new mysqli($servername, $username, $password, $dbname);
 
 if ($conn->connect_error) {
-  die("Connection failed: " . $conn->connect_error);
+  die ("Connection failed: " . $conn->connect_error);
 }
 
 
@@ -25,17 +25,19 @@ $conn->close();
 ?>
 <!DOCTYPE html>
 <html lang="th">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>แสดงข้อมูลใบเสร็จ</title>
   <link rel="stylesheet" href="../home/style/styleforBill.css">
 </head>
+
 <body>
   <a href="Main_admin_menu.php"><button class="button">กลับหน้าหลัก</button></a>
   <div class="container">
     <h1>ข้อมูลลูกค้า</h1><br>
-    
+
     <table class="bills-table">
       <thead>
         <tr>
@@ -50,11 +52,21 @@ $conn->close();
       <tbody>
         <?php foreach ($users as $user): ?>
           <tr>
-            <td><?php echo $user["user_ID"]; ?></td>
-            <td><?php echo $user["fname"]; ?></td>
-            <td><?php echo $user["lname"]; ?></td>
-            <td><?php echo $user["email"]; ?></td>
-            <td><?php echo $user["createDate"]; ?></td>
+            <td>
+              <?php echo $user["user_ID"]; ?>
+            </td>
+            <td>
+              <?php echo $user["fname"]; ?>
+            </td>
+            <td>
+              <?php echo $user["lname"]; ?>
+            </td>
+            <td>
+              <?php echo $user["email"]; ?>
+            </td>
+            <td>
+              <?php echo $user["createDate"]; ?>
+            </td>
             <td>
               <form action="deleteBill.php" method="post" onsubmit="return confirm('ยืนยันการลบใบเสร็จ?');">
                 <input type="hidden" name="id" value="<?php echo $bill["bill_ID"]; ?>">
@@ -68,7 +80,8 @@ $conn->close();
   </div>
   <br><br>
   <?php
-  require("footer.php")
-  ?>
+  require ("footer.php")
+    ?>
 </body>
+
 </html>

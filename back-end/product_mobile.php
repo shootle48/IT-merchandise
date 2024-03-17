@@ -1,6 +1,6 @@
 <?php
 
-require("database/db.php");
+require ("database/db.php");
 
 $search = "%โทรศัพท์%";
 

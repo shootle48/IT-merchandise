@@ -4,10 +4,10 @@ $productID = $_GET['product_ID'];
 
 $servername = "localhost";
 $dbname = "it-merchandise";
-$conn = new mysqli($servername,'root' , '' , $dbname);
+$conn = new mysqli($servername, 'root', '', $dbname);
 
 if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
+    die ("Connection failed: " . $conn->connect_error);
 }
 
 $sql = "DELETE FROM product WHERE product_ID = ?";

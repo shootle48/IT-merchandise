@@ -16,8 +16,8 @@
     <a href='../home/home.php' class='button back-button'>ออกจากระบบ</a><br><br><br>
   </div>
   <?php
-  require("footer.php")
-  ?>
+  require ("footer.php")
+    ?>
 
 </body>
 

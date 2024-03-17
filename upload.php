@@ -8,11 +8,11 @@
 // Connect to database (replace with your credentials)
 $db = new mysqli("localhost", "root", "", "it-merchandise");
 if (!$db) {
-    die("Connection failed: " . mysqli_connect_error());
+    die ("Connection failed: " . mysqli_connect_error());
 }
 
 // Handle file upload (replace with your desired upload directory and security considerations)
-if (isset($_FILES["image"])) {
+if (isset ($_FILES["image"])) {
     $file = $_FILES["image"];
     $filename = $file["name"];
 

@@ -1,5 +1,5 @@
 <?php
-require("../../back-end/database/db.php");
+require ("../../back-end/database/db.php");
 $userID = $_GET['userID'];
 $fname = $_GET['fname'];
 
@@ -44,61 +44,75 @@ foreach ($cartItems as $item) {
 }
 
 $deleteCart = mysqli_prepare($connection, "DELETE FROM carts WHERE user_ID = ?");
-mysqli_stmt_bind_param($deleteCart,"s",$userID);
+mysqli_stmt_bind_param($deleteCart, "s", $userID);
 mysqli_stmt_execute($deleteCart);
 mysqli_stmt_close($deleteCart);
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bills</title>
-    <link rel="stylesheet" href="style/bill.css">
+    <link rel="stylesheet" href="style/bill.css?v=<?php echo time() ?>">
 </head>
+
 <body>
-<div style='position:sticky; top:0;'>
-    <?php require("components/nav.php"); ?>
-    <div class="Container">
-        <!-- Display bill items -->
-        <div class="ShowDetail">
-            <div class="header">
-                <h1>ขอบคุณสำหรับคำสั่งซื้อ</h1>
-            </div>
-            <div class="body">
-                <?php foreach ($billItems as $billItem): ?>
-                    <div class='detail'>
-                        รหัสใบสั่งซื้อ: <div class="billID"><?php echo $billItem['bill_ID']; ?></div>
-                        <hr>
-                        ชื่อผู้รับ: <div class="name"><?php echo $billItem['emp_Name']; ?></div>
-                        <hr>
-                        เบอร์โทร: <div class="tel"><?php echo $billItem['tel']; ?></div>
-                        <hr>
-                        ที่อยู่ในการจัดส่ง: <div class="address"><?php echo $billItem['address']; ?></div>
-                        <hr>
-                        <h4>รายละเอียดสินค้า</h4>
-                        <hr>
-                        <div class="productShow">
-                            <?php foreach ($products as $product): ?>
-                                <div>
-                                    <?php echo $product['name_product']; ?>
-                                    <?php echo $product['product_price']; ?>
-                                </div>
-                            <?php endforeach; ?>
+    <div style='position:sticky; top:0;'>
+        <?php require ("components/nav.php"); ?>
+        <div class="Container">
+            <!-- Display bill items -->
+            <div class="ShowDetail">
+                <div class="header">
+                    <h1>ขอบคุณสำหรับคำสั่งซื้อ</h1>
+                </div>
+                <div class="body">
+                    <?php foreach ($billItems as $billItem): ?>
+                        <div class='detail'>
+                            รหัสใบสั่งซื้อ: <div class="billID">
+                                <?php echo $billItem['bill_ID']; ?>
+                            </div>
+                            <hr>
+                            ชื่อผู้รับ: <div class="name">
+                                <?php echo $billItem['emp_Name']; ?>
+                            </div>
+                            <hr>
+                            เบอร์โทร: <div class="tel">
+                                <?php echo $billItem['tel']; ?>
+                            </div>
+                            <hr>
+                            ที่อยู่ในการจัดส่ง: <div class="address">
+                                <?php echo $billItem['address']; ?>
+                            </div>
+                            <hr>
+                            <h4>รายละเอียดสินค้า</h4>
+                            <hr>
+                            <div class="productShow">
+                                <?php foreach ($products as $product): ?>
+                                    <div>
+                                        <?php echo $product['name_product']; ?>
+                                        <?php echo $product['product_price']; ?>
+                                    </div>
+                                <?php endforeach; ?>
+                            </div>
+                            <hr>
+                            ยอดรวมสุทธิ: <div class="total">
+                                <?php echo $billItem['totalPrice']; ?>
+                            </div>
                         </div>
-                        <hr>
-                        ยอดรวมสุทธิ: <div class="total"><?php echo $billItem['totalPrice']; ?></div>
-                    </div>
                     <?php endforeach; ?>
-                    <div class="btn-home">
-                        <a href="home.php?fname=<?php echo $fname?>"><p>กลับหน้าแรก</p></a>
-                    </div>
+                </div>
+                <div class="btn-home">
+                    <a href="home.php?fname=<?php echo $fname ?>">
+                        <p>กลับหน้าแรก</p>
+                    </a>
+                </div>
             </div>
         </div>
     </div>
-</div>
 
-<?php require("components/footer.php") ?>
 </body>
+
 </html>
