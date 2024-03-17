@@ -43,11 +43,6 @@ foreach ($cartItems as $item) {
     mysqli_stmt_close($stmt);
 }
 
-$deleteBill = mysqli_prepare($connection, "DELETE FROM bills WHERE user_ID = ?");
-mysqli_stmt_bind_param($deleteBill, "s", $userID);
-mysqli_stmt_execute($deleteBill); // Delete bills first
-mysqli_stmt_close($deleteBill);
-
 $deleteCart = mysqli_prepare($connection, "DELETE FROM carts WHERE user_ID = ?");
 mysqli_stmt_bind_param($deleteCart,"s",$userID);
 mysqli_stmt_execute($deleteCart);
