@@ -115,11 +115,12 @@ header .catagory .dropdown *,.dropdownUser *{
     z-index:1;
 }
 
-.menu li, .menuUser li{
-    padding:.7em .5em;
-    margin:.3em 0;
-    border-radius:.5em;
-    cursor:pointer;
+.menu li, .menuUser li {
+    font-size: 1.3rem;
+    padding: .2em 0;
+    margin: .3em 0;
+    border-radius: .5em;
+    cursor: pointer;
 }
 
 .menu li:hover, .menuUser li:hover{

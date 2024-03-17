@@ -8,9 +8,10 @@ body{
     background-color: #F3E4FF;
 }
 
-.Container{
+.Container {
     margin: 40px auto;
-    width: 815px;
+    width: fit-content;
+    padding: 1.5rem;
     background-color: #fff;
     border-radius: 10px;
 }
@@ -22,7 +23,7 @@ body{
 }
 
 .header {
-    margin: 2rem auto;
+    margin: 1.2rem auto;
 }
 
 .body {

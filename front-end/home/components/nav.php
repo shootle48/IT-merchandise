@@ -106,6 +106,7 @@ $is_logged_in = isset($fnameShow['fname']); // Check if user is logged in
                     </div>
                 </div>
                 <ul class="menuUser">
+                    <li><a href="bill.php?fname=<?php echo $fnameShow['fname']?>&userID=<?php echo $fnameShow['user_ID']?>">ประวัติการสั่งซื้อ</a></li>
                     <li onclick='logout()'>ออกจากระบบ</li>
                 </ul>
             </div>

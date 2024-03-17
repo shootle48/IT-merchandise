@@ -92,18 +92,11 @@ body {
   justify-content: space-between;
 }
 
-.image{
-  width: 100px;
-  height: 100px;
-}
 img {
   border-radius: 10px;
   width: 100px;
 }
 
-span {
-  font-weight: bold;
-}
 
 
 .info {

@@ -3,6 +3,17 @@ require("../../back-end/database/db.php");
 require("user-info.php");
 $is_logged_in = isset($fnameShow['fname']);
 
+// Fetch product details
+if (isset($_GET['productID'])) {
+    $productID = $_GET['productID'];
+    $stmt = mysqli_prepare($connection, "SELECT * FROM product WHERE product_ID = ?");
+    mysqli_stmt_bind_param($stmt, "s", $productID);
+    mysqli_stmt_execute($stmt);
+    $result = mysqli_stmt_get_result($stmt);
+    $productShow = mysqli_fetch_assoc($result);
+    mysqli_stmt_close($stmt);
+}
+
 // Check if productID is set and the user is logged in
 if (isset($_POST['addToCart']) && $is_logged_in) {
     $productID = $_GET['productID'];
@@ -30,21 +41,21 @@ if (isset($_POST['addToCart']) && $is_logged_in) {
         mysqli_stmt_execute($stmt_insert);
         mysqli_stmt_close($stmt_insert);
     }
+    
+    echo '<script>window.location = "cart.php?fname='.$fnameShow['fname'].'&userID='.$userID.'"</script>';
 
     // Close the statement
     mysqli_stmt_close($stmt_check);
 }
 
-// Fetch product details
-if (isset($_GET['productID'])) {
+elseif (isset($_POST['purchase']) && $is_logged_in) {
     $productID = $_GET['productID'];
-    $stmt = mysqli_prepare($connection, "SELECT * FROM product WHERE product_ID = ?");
-    mysqli_stmt_bind_param($stmt, "s", $productID);
-    mysqli_stmt_execute($stmt);
-    $result = mysqli_stmt_get_result($stmt);
-    $productShow = mysqli_fetch_assoc($result);
-    mysqli_stmt_close($stmt);
+    $userID = $fnameShow['user_ID'];
+    $quantity = $_POST['quantity']; 
+
+    echo '<script>window.location = "orderConfirming.php?fname='.$fnameShow['fname'].'&userID='.$userID.'&total='.$productShow['product_price'].'"</script>';
 }
+
 ?>
 
 <!DOCTYPE html>
@@ -81,11 +92,11 @@ if (isset($_GET['productID'])) {
                         <button type="button" class="quantity-plus">+</button>
                     </div>
                     <div class="buttons">
-                        <a href="cart.php?userID=<?php echo $userID ?>&fname=<?php echo $fnameShow['fname']?>">
+                        <a href="#">
                             <button class='cart-btn' name="addToCart">หยิบใส่ตะกร้า</button>
                         </a>
-                        <a href="orderConfirming.php?fname=<?php echo $fnameShow['fname']?>&userID=<?php echo $fnameShow['user_ID']?>&total=<?php echo $productShow['product_price'] ?>">
-                            <button class='pay-btn'>ซื้อสินค้า</button>
+                        <a href="#">
+                            <button class='pay-btn' name="purchase" >ซื้อสินค้า</button>
                         </a>
                     </div>
                 </form>
