@@ -1,0 +1,78 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  body {
+    background-color: #F3E4FF;
+  }
+
+  .container {
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+    gap: 1rem;
+    width: 1250px;
+    margin: 52px auto 22px auto;
+  }
+        .orderForm{
+            height:69.3vh;
+        }
+        .header {
+    background-color: #fff;
+    color: #000;
+    padding: 0 2.5rem;
+    border-radius:20px;
+  }
+
+  .header h1,h3{
+      margin:1.5rem 0;
+  }
+  .body {
+    display:flex;
+    flex-direction:column;
+    gap:2rem;
+    background-color: #5D00A7;
+    color:#fff;
+    padding: 52px 25px;
+    border-radius:20px;
+  }
+  .order-right{
+    display:flex;
+    justify-content:space-between;
+  }
+  .inputData {
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+}
+input[type="text"] {
+    width: 400px;
+    height: 45px;
+}
+textarea {
+    width: 500px;
+    height: 100px;
+}
+
+select {
+    padding: 1rem;
+    width: 500px;
+    text-align: center;
+    font-size: 1.2rem;
+}
+
+.order-right {
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+
+input.btn {
+    cursor: pointer;
+  padding: .5rem;
+  width: 250px;
+  border-radius: 3px;
+  border: none;
+  font-size: 1rem;
+  font-weight: 600;
+}

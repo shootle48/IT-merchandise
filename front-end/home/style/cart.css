@@ -1,0 +1,146 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #F3E4FF;
+}
+
+.Container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 1.5rem auto;
+  border-radius: 20px;
+  width: 1385px;
+  background-color: #FFF;
+}
+
+.container {
+  display: grid;
+  grid-template-columns: 3fr 1fr;
+  gap: 1rem;
+  width: 1250px;
+  margin: 52px auto 22px auto;
+  height: fit-content;
+}
+
+.header {
+  background-color: #fff;
+  color: #000;
+  padding: 0 2.5rem;
+  border-radius:20px;
+}
+.head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.head a{
+  text-decoration: none;
+  background-color: #5D00A7;
+  color: #fff;
+  padding: .5rem;
+  border-radius: 10px;
+}
+
+.header h1{
+    margin:1.5rem 0;
+}
+
+.body {
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+  background-color: #5D00A7;
+  color:#fff;
+  padding: 52px 25px;
+  border-radius:20px;
+}
+.content-total{
+  display:flex;
+  flex-direction:column;
+  margin:0 auto;
+}
+.total{
+    margin:1.5rem 0;
+    display:flex;
+    gap:.75rem;
+    flex-direction:column;
+}
+
+.totalPrice,
+.discountPrice,
+.RealTotal{
+    display:flex;
+    justify-content:space-between;
+}
+
+.pay-btn{
+  display:flex;
+  justify-content:center;
+}
+
+
+.item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+  justify-content: space-between;
+}
+
+.image{
+  width: 100px;
+  height: 100px;
+}
+img {
+  border-radius: 10px;
+  width: 100px;
+}
+
+span {
+  font-weight: bold;
+}
+
+
+.info {
+    margin-left: 10px;
+}
+
+.info {
+    display: flex;
+    gap: 1.3rem;
+}
+.subtotal,
+.discount,
+.total {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.trash-icon {
+  width: 1.5rem;
+  cursor: pointer;
+  border: none;
+  background-color: red;
+  color: #fff;
+  border-radius: 5px;
+}
+
+.buttons {
+  text-align: right;
+}
+
+button#checkout {
+  cursor: pointer;
+  padding: .5rem;
+  width: 250px;
+  border-radius: 3px;
+  border: none;
+  font-size: 1rem;
+  font-weight: 600;
+}
