@@ -56,12 +56,12 @@
     width: 60px;
 }
 
-.buttons{
+form .buttons{
     display: flex;
     justify-content: space-around;
 }
 
-.buttons .cart-btn,
+form .buttons .cart-btn,
 .pay-btn{
     color: #FFF;
     font-size: 1rem;
@@ -72,7 +72,7 @@
     cursor: pointer;
 }
 
-.buttons .cart-btn{
+form .buttons .cart-btn{
     opacity: 0.65;
 }
   

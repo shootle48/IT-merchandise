@@ -4,10 +4,10 @@ require("user-info.php");
 $is_logged_in = isset($fnameShow['fname']);
 
 // Check if productID is set and the user is logged in
-if (isset($_GET['productID']) && $is_logged_in) {
+if (isset($_POST['addToCart']) && $is_logged_in) {
     $productID = $_GET['productID'];
     $userID = $fnameShow['user_ID'];
-    $quantity = 1; 
+    $quantity = $_POST['quantity']; 
 
     // Check if the product already exists in the user's cart
     $stmt_check = mysqli_prepare($connection, "SELECT * FROM carts WHERE product_ID = ? AND user_ID = ?");
@@ -18,7 +18,7 @@ if (isset($_GET['productID']) && $is_logged_in) {
     if (mysqli_num_rows($result_check) > 0) {
         // Product already exists in the cart, update the quantity
         $row = mysqli_fetch_assoc($result_check);
-        $quantity = $row['quantity']; // Update quantity to the existing value
+        $quantity = (int)$row['quantity'] + (int)$quantity; // Update quantity to the existing value
         $stmt_update = mysqli_prepare($connection, "UPDATE carts SET quantity = ? WHERE product_ID = ? AND user_ID = ?");
         mysqli_stmt_bind_param($stmt_update, "sss", $quantity, $productID, $userID);
         mysqli_stmt_execute($stmt_update);
@@ -77,18 +77,18 @@ if (isset($_GET['productID'])) {
                     <div class="quantity-input">
                         <p>จำนวน</p>
                         <button type="button" class="quantity-minus">-</button>
-                        <input type="number" class="quantity-input-field" value="<?php echo $quantity?>" readonly>
+                        <input type="number" class="quantity-input-field" value="1" name="quantity" >
                         <button type="button" class="quantity-plus">+</button>
                     </div>
+                    <div class="buttons">
+                        <a href="cart.php?userID=<?php echo $userID ?>&fname=<?php echo $fnameShow['fname']?>">
+                            <button class='cart-btn' name="addToCart">หยิบใส่ตะกร้า</button>
+                        </a>
+                        <a href="orderConfirming.php?fname=<?php echo $fnameShow['fname']?>&userID=<?php echo $fnameShow['user_ID']?>&total=<?php echo $productShow['product_price'] ?>">
+                            <button class='pay-btn'>ซื้อสินค้า</button>
+                        </a>
+                    </div>
                 </form>
-                <div class="buttons">
-                    <a href="cart.php?userID=<?php echo $userID ?>&fname=<?php echo $fnameShow['fname']?>">
-                        <button class='cart-btn'>หยิบใส่ตะกร้า</button>
-                    </a>
-                    <a href="orderConfirming.php?fname=<?php echo $fnameShow['fname']?>&userID=<?php echo $fnameShow['user_ID']?>&total=<?php echo $productShow['product_price'] ?>">
-                        <button class='pay-btn'>ซื้อสินค้า</button>
-                    </a>
-                </div>
             <?php else: ?>
                 <div class="quantity-input">
                         <p>จำนวน</p>
