@@ -23,6 +23,6 @@ mysqli_stmt_bind_param($stmt, "sssss", $userID, $name, $tel, $address, $totalPri
 mysqli_stmt_execute($stmt);
 mysqli_stmt_close($stmt);
 
-echo '<script>window.location = "warrantyStart.php?fname=' . $fname . '&userID=' . $userID . '&productID'.$productShow['product_ID'].'"</script>';
+echo '<script>window.location = "warrantyStart.php?fname=' . $fname . '&userID=' . $userID . '&productID='.$productShow['product_ID'].'"</script>';
 
 ?>
