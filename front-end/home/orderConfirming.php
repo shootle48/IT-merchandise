@@ -4,6 +4,16 @@ $userID = $_GET['userID'];
 $total = $_GET['total'];
 $fname = $_GET['fname'];
 
+if (isset ($_GET['productID'])) {
+    $productID = $_GET['productID'];
+    $stmt = mysqli_prepare($connection, "SELECT * FROM product WHERE product_ID = ?");
+    mysqli_stmt_bind_param($stmt, "s", $productID);
+    mysqli_stmt_execute($stmt);
+    $result = mysqli_stmt_get_result($stmt);
+    $productShow = mysqli_fetch_assoc($result);
+    mysqli_stmt_close($stmt);
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -25,7 +35,7 @@ $fname = $_GET['fname'];
         ?>
     </div>
 
-    <form action="ordered.php?userID=<?php echo $userID ?>&fname=<?php echo $fname ?>" method="post">
+    <form action="ordered.php?userID=<?php echo $userID ?>&fname=<?php echo $fname ?>&productID=<?php echo $productShow['product_ID']?>" method="post">
         <div class="orderForm container">
             <div class="order-left header">
                 <h1>การชำระเงิน</h1>

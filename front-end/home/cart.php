@@ -129,7 +129,7 @@ foreach ($cartItems as $item) {
             <!-- Pay button -->
             <div class="pay-btn">
                 <?php if (!empty ($cartItems)): ?>
-                    <a href="orderConfirming.php?userID=<?php echo $userID ?>&total=<?php echo $total ?>&fname=<?php echo $fnameShow['fname'] ?>"
+                    <a href="orderConfirming.php?userID=<?php echo $userID ?>&total=<?php echo $total ?>&fname=<?php echo $fnameShow['fname'] ?>&productID=<?php echo $productShow['product_ID']?>"
                         id="checkout-link">
                         <button type='button' id="checkout">ดำเนินการชำระเงิน</button>
                     </a>

@@ -42,7 +42,7 @@ if (isset ($_POST['addToCart']) && $is_logged_in) {
         mysqli_stmt_close($stmt_insert);
     }
 
-    echo '<script>window.location = "cart.php?fname=' . $fnameShow['fname'] . '&userID=' . $userID . '"</script>';
+    echo '<script>window.location = "cart.php?fname=' . $fnameShow['fname'] . '&userID=' . $userID . '&productID='.$productShow['product_ID'].'"</script>';
 
     // Close the statement
     mysqli_stmt_close($stmt_check);
