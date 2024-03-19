@@ -51,7 +51,7 @@ if (isset ($_POST['addToCart']) && $is_logged_in) {
     $userID = $fnameShow['user_ID'];
     $quantity = $_POST['quantity'];
 
-    echo '<script>window.location = "orderConfirming.php?fname=' . $fnameShow['fname'] . '&userID=' . $userID . '&total=' . $productShow['product_price'] . '"</script>';
+    echo '<script>window.location = "orderConfirming.php?fname=' . $fnameShow['fname'] . '&userID=' . $userID . '&total=' . $productShow['product_price'] . '&productID='.$productShow['product_ID'].'"</script>';
 }
 
 ?>
@@ -81,8 +81,11 @@ if (isset ($_POST['addToCart']) && $is_logged_in) {
                 </h1>
                 <p style='color:#7C7C7C;' class='caption '>แบรนด์:
                     <?php echo $productShow['product_brand'] ?>
+                    &nbsp;&nbsp; รับประกัน:
+                    <?php echo $productShow['warranty_date'] ?> ปี
                     &nbsp;&nbsp; ID:
                     <?php echo $productShow['product_ID'] ?>
+                    
                 </p>
                 <hr>
                 <p>

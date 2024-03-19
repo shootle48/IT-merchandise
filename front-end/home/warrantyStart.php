@@ -3,7 +3,8 @@ require ("../../back-end/database/db.php");
 $userID = $_GET['userID'];
 $fname = $_GET['fname'];
 
-if (isset ($_GET['productID'])) {
+
+if (isset($_GET['productID'])) {
     $productID = $_GET['productID'];
     $stmt = mysqli_prepare($connection, "SELECT * FROM product WHERE product_ID = ?");
     mysqli_stmt_bind_param($stmt, "s", $productID);
@@ -22,8 +23,30 @@ if (isset ($_GET['productID'])) {
     <title>Document</title>
 </head>
 <body>
-    welcome Warranty
-    <a href="slip.php?fname=<?php echo $fname ?>&userID=<?php echo $userID?>">ไปต่อ</a>
-    <h1>Product_TYPE = <?php echo $productShow['type']?></h1>
+    
+    <div style='position:sticky; top:0;'>
+        <?php
+        require("components/nav.php");
+        ?>
+    </div>
+<div class="Container">
+    <div class="container">
+        <form id="form"action="warrantyEnd.php?userID=<?php echo $userID ?>&fname=<?php echo $fname ?>&productID=<?php echo $productShow['product_ID']?>" method="post">
+            <div>
+                <input type="hidden" name="type" value="<?php echo $productShow['type']?>" >                        
+                <input type="hidden" name="name_product" value="<?php echo $productShow['name_product']?>">                
+                <input type="hidden" name="warranty_date" value="<?php echo $productShow['warranty_date']?>">   
+                <input type="hidden" name="warranty_out">                    
+                <input type="hidden" name="serial">
+                <input type="hidden" name="sale_date" value="<?php echo date("Y-m-d H:i:s"); ?>">
+            </div>
+        </form>
+        <script>
+            window.onload = function() {
+                document.getElementById('form').submit();
+            };
+        </script>
+    </div>  
+</div>  
 </body>
 </html>

@@ -16,7 +16,7 @@ while ($rows = mysqli_fetch_assoc($result)) {
 mysqli_stmt_close($stmt);
 
 // Select cart items
-$carts = mysqli_prepare($connection, "SELECT * FROM carts WHERE user_ID LIKE ?");
+$carts = mysqli_prepare($connection, "SELECT * FROM cartStock WHERE user_ID LIKE ?");
 mysqli_stmt_bind_param($carts, "s", $userID);
 mysqli_stmt_execute($carts);
 $result = mysqli_stmt_get_result($carts);
@@ -47,7 +47,24 @@ $deleteCart = mysqli_prepare($connection, "DELETE FROM carts WHERE user_ID = ?")
 mysqli_stmt_bind_param($deleteCart, "s", $userID);
 mysqli_stmt_execute($deleteCart);
 mysqli_stmt_close($deleteCart);
+
+
+// // Select warranty items
+// $warranty = mysqli_prepare($connection, "SELECT * FROM warranty WHERE user_ID LIKE ?");
+// mysqli_stmt_bind_param($warranty, "s", $userID);
+// mysqli_stmt_execute($warranty);
+// $result = mysqli_stmt_get_result($warranty);
+
+// // Fetch all items in the warranty
+// $warrantyItems = [];
+// while ($row = mysqli_fetch_assoc($result)) {
+//     $warrantyItems[] = $row;
+// }
+// // Close the statement
+// mysqli_stmt_close($warranty);
 ?>
+
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -91,7 +108,7 @@ mysqli_stmt_close($deleteCart);
                             <hr>
                             <div class="productShow">
                                 <?php foreach ($products as $product): ?>
-                                    <div>
+                                    <div>--
                                         <?php echo $product['name_product']; ?>
                                         <?php echo $product['product_price']; ?>
                                     </div>
@@ -101,6 +118,10 @@ mysqli_stmt_close($deleteCart);
                             ยอดรวมสุทธิ: <div class="total">
                                 <?php echo $billItem['totalPrice']; ?>
                             </div>
+                            <!-- <hr>
+                            เลขSerial: <div>
+                                <?php echo $serial['serial'];?>
+                            </div> -->
                         </div>
                     <?php endforeach; ?>
                 </div>
