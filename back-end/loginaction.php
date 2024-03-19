@@ -20,7 +20,7 @@ if (mysqli_num_rows($result) > 0) {
     if ($hashPassword == "f6e0a1e2ac41945a9aa7ff8a8aaa0cebc12a3bcc981a929ad5cf810a090e11ae") {
         // Passwords match, login successful
         echo '  <script>    
-                        window.location = "../front-end/admin/Main_admin_menu.php";
+                        window.location = "../front-end/admin/adminpage.php";
                     </script>';
     } else {
         if ($hashPassword == $row['password']) {

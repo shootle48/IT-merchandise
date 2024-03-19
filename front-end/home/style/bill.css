@@ -21,10 +21,6 @@ body {
   align-items: center;
 }
 
-.header {
-  margin: 1.2rem auto;
-}
-
 .body {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
@@ -49,16 +45,6 @@ body {
 .productShow,
 .total {
   font-weight: lighter;
-}
-
-.btn-home {
-  margin-top: 1rem;
-  display: flex;
-  justify-content: center;
-  background-color: #5d00a7;
-  padding: 0.5rem;
-  border-radius: 5px;
-  cursor: pointer;
 }
 
 p {

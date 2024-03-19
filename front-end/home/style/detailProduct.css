@@ -75,3 +75,19 @@ form .buttons .cart-btn,
 form .buttons .cart-btn {
   opacity: 0.65;
 }
+
+.cart-btn,
+.pay-btn{
+  color: #fff;
+  font-size: 1rem;
+  padding: 1rem 8rem;
+  background-color: #5d00a7;
+  border-radius: 5px;
+  border: 1px solid transparent;
+  cursor: pointer;
+}
+
+.buttons .cart-btn{
+  opacity: 0.65;
+}
+

@@ -1,24 +1,14 @@
 <?php
+$link = mysqli_connect('localhost', 'root', '', 'it-merchandise') or die ('Connect Failed' . mysqli_connect_error());
+$bill_ID = $_REQUEST["bill_ID"];
 
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "it-merchandise";
+$sql = "delete from bills where bill_ID='$bill_ID'";
 
-
-$conn = new mysqli($servername, $username, $password, $dbname);
-
-
-if ($conn->connect_error) {
-  die ("Connection failed: " . $conn->connect_error);
+$result = mysqli_query($link, $sql);
+if ($result) {
+    echo "<script>alert('ลบข้อมูลสำเร็จ');</script>";
+    echo "<script>window.location='admin_bill.php';</script>";
+} else {
+    echo "<script>alert('ไม่สามารถลบข้อมูลได้');</script>";
 }
-
-$id = $_POST["id"];
-
-$sql = "DELETE FROM bills WHERE bill_ID = $id";
-$conn->query($sql);
-
-echo "<script>alert('ลบข้อมูลใบเสร็จเรียบร้อย'); window.location.href='Bill.php';</script>";
-
-$conn->close();
 ?>
