@@ -31,7 +31,7 @@ if (isset($_GET['productID'])) {
     </div>
 <div class="Container">
     <div class="container">
-        <form id="form"action="warrantyEnd.php?userID=<?php echo $userID ?>&fname=<?php echo $fname ?>&productID=<?php echo $productShow['product_ID']?>" method="post">
+        <form id="form" action="warrantyEnd.php?userID=<?php echo $userID ?>&fname=<?php echo $fname ?>&productID=<?php echo $productShow['product_ID']?>" method="post">
             <div>
                 <input type="hidden" name="type" value="<?php echo $productShow['type']?>" >                        
                 <input type="hidden" name="name_product" value="<?php echo $productShow['name_product']?>">                

@@ -35,7 +35,9 @@ if (isset ($_GET['productID'])) {
         ?>
     </div>
 
-    <form action="ordered.php?userID=<?php echo $userID ?>&fname=<?php echo $fname ?>&productID=<?php echo $productShow['product_ID']?>" method="post">
+    <form
+        action="ordered.php?userID=<?php echo $userID ?>&fname=<?php echo $fname ?>&productID=<?php echo $productShow['product_ID'] ?>"
+        method="post">
         <div class="orderForm container">
             <div class="order-left header">
                 <h1>การชำระเงิน</h1>

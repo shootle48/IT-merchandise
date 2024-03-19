@@ -34,15 +34,25 @@ if (isset ($_POST['addToCart']) && $is_logged_in) {
         mysqli_stmt_bind_param($stmt_update, "sss", $quantity, $productID, $userID);
         mysqli_stmt_execute($stmt_update);
         mysqli_stmt_close($stmt_update);
+
+        $stmt_insert = mysqli_prepare($connection, "INSERT INTO cartStock (user_ID, product_ID, product_name, product_price) VALUES (?, ?, ?, ?)");
+        mysqli_stmt_bind_param($stmt_insert, "ssss", $userID, $productID, $productShow['name_product'], $productShow['product_price']);
+        mysqli_stmt_execute($stmt_insert);
+        mysqli_stmt_close($stmt_insert);
     } else {
         // Product doesn't exist in the cart, insert it
         $stmt_insert = mysqli_prepare($connection, "INSERT INTO carts (product_ID, user_ID, quantity) VALUES (?, ?, ?)");
         mysqli_stmt_bind_param($stmt_insert, "sss", $productID, $userID, $quantity);
         mysqli_stmt_execute($stmt_insert);
         mysqli_stmt_close($stmt_insert);
+
+        $stmt_insert = mysqli_prepare($connection, "INSERT INTO cartStock (user_ID, product_ID, product_name, product_price) VALUES (?, ?, ?, ?)");
+        mysqli_stmt_bind_param($stmt_insert, "ssss", $userID, $productID, $productShow['name_product'], $productShow['product_price']);
+        mysqli_stmt_execute($stmt_insert);
+        mysqli_stmt_close($stmt_insert);
     }
 
-    echo '<script>window.location = "cart.php?fname=' . $fnameShow['fname'] . '&userID=' . $userID . '&productID='.$productShow['product_ID'].'"</script>';
+    echo '<script>window.location = "cart.php?fname=' . $fnameShow['fname'] . '&userID=' . $userID . '&productID=' . $productShow['product_ID'] . '"</script>';
 
     // Close the statement
     mysqli_stmt_close($stmt_check);
@@ -51,7 +61,7 @@ if (isset ($_POST['addToCart']) && $is_logged_in) {
     $userID = $fnameShow['user_ID'];
     $quantity = $_POST['quantity'];
 
-    echo '<script>window.location = "orderConfirming.php?fname=' . $fnameShow['fname'] . '&userID=' . $userID . '&total=' . $productShow['product_price'] . '&productID='.$productShow['product_ID'].'"</script>';
+    echo '<script>window.location = "orderConfirming.php?fname=' . $fnameShow['fname'] . '&userID=' . $userID . '&total=' . $productShow['product_price'] . '&productID=' . $productShow['product_ID'] . '"</script>';
 }
 
 ?>
@@ -85,7 +95,7 @@ if (isset ($_POST['addToCart']) && $is_logged_in) {
                     <?php echo $productShow['warranty_date'] ?> ปี
                     &nbsp;&nbsp; ID:
                     <?php echo $productShow['product_ID'] ?>
-                    
+
                 </p>
                 <hr>
                 <p>
