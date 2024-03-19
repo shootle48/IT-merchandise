@@ -1,0 +1,65 @@
+.header-product {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 1.2rem;
+}
+
+.container-Product-Card {
+  display: grid;
+  grid-template-columns: auto auto auto auto;
+}
+
+.container-Product-Card a {
+  text-decoration: none;
+  display: flex;
+  margin-left: auto;
+  margin-right: auto;
+  margin: 1.5rem 0.5rem;
+}
+
+.product-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 300px;
+  border: 1px solid #ddd;
+  color: #000;
+  border-radius: 15px;
+  margin: 10px;
+  padding: 20px;
+  background-color: #fff;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.product-card img {
+  /* เพิ่ม max-width: 100%; */
+  height: 200px;
+  object-fit: contain;
+}
+
+.product-card h3 {
+  font-size: 18px;
+  margin-bottom: 5px;
+}
+
+.product-card p {
+  font-size: 1.3rem;
+  font-weight: bold;
+  color: red;
+  margin-bottom: 10px;
+}
+
+.product-card button {
+  font-size: 21px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.product-card button:hover {
+  background-color: #0062cc;
+}
