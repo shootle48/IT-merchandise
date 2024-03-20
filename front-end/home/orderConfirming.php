@@ -1,7 +1,9 @@
 <?php
 require ("../../back-end/database/db.php");
+$price = $_POST['Customer_price'];
+$discount = $_POST['Customer_discount'];
+$total = $_POST['Customer_total'];
 $userID = $_GET['userID'];
-$total = $_GET['total'];
 $fname = $_GET['fname'];
 
 if (isset ($_GET['productID'])) {
@@ -13,7 +15,6 @@ if (isset ($_GET['productID'])) {
     $productShow = mysqli_fetch_assoc($result);
     mysqli_stmt_close($stmt);
 }
-
 ?>
 
 <!DOCTYPE html>
@@ -24,6 +25,20 @@ if (isset ($_GET['productID'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>orderConfirming</title>
     <link rel="stylesheet" href="style/orderConfirming.css">
+    <style>
+        .coupon-box {}
+
+        .coupon-input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            box-sizing: border-box;
+        }
+
+        .output {
+            margin-top: 40px;
+        }
+    </style>
 
 </head>
 
@@ -62,10 +77,24 @@ if (isset ($_GET['productID'])) {
             </div>
             <div class="body">
                 <div class="order-right">
+                    <p>ยอดรวม</p>
+                    <span name='price' id="price">
+                        <?php
+                        echo $price;
+                        ?>
+                    </span>
+                    <p>ส่วนลด</p>
+                    <span name='discount' id="discount">
+                        <?php
+                        echo $discount
+                        ?>
+                    </span>
                     <p>ยอดรวมสุทธิ</p>
-                    <input type="hidden" name='totalPrice' value='<?php echo $total ?>'>
-                    <span name='total'>
-                        <?php echo $total ?>
+                    <span name='total' id="total">
+                        <input hidden htype="text" name="total" value=<?php echo $total?>>
+                        <?php
+                        echo $total;
+                        ?>
                     </span>
                 </div>
                 <input type="submit" value="ชำระเงิน" class="btn">

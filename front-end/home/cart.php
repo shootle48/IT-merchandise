@@ -110,33 +110,42 @@ foreach ($cartItems as $item) {
             <?php endforeach; ?>
         </div>
         <div class="body">
-            <!-- Discount input field and apply button -->
-            <!-- Total price and discount -->
-            <div class="total">
-                <div class="totalPrice">
-                    <h3>ยอดรวม</h3>
-                    <span id="totalPrice">฿
-                        <?php echo $total; ?>
-                    </span>
-                </div>
-                <div class="RealTotal">
-                    <h3>ยอดรวมสุทธิ</h3>
-                    <span id="realTotal" name='totalPrice'>฿
-                        <?php echo $total; ?>
-                    </span>
+            <div class="order-right">
+                <div class="coupon-box">
+                    <input type="text" id="coupon_code" class="coupon-input" name="coupon-input"
+                        placeholder="กรอกรหัสส่วนลด">
+                    <br>
+                    <button onclick="applyCoupon()" style="width: 100%;">ยืนยันรหัสส่วนลด</button><br>
+                    <div id="output" class="output"></div>
                 </div>
             </div>
             <!-- Pay button -->
-            <div class="pay-btn">
-                <?php if (!empty ($cartItems)): ?>
-                    <a href="orderConfirming.php?userID=<?php echo $userID ?>&total=<?php echo $total ?>&fname=<?php echo $fnameShow['fname'] ?>&productID=<?php echo $productShow['product_ID']?>"
-                        id="checkout-link">
-                        <button type='button' id="checkout">ดำเนินการชำระเงิน</button>
-                    </a>
-                <?php else: ?>
-                    <button type='button' id="checkout">ดำเนินการชำระเงิน</button>
-                <?php endif ?>
-            </div>
+            <form method="POST"
+                action="orderConfirming.php?userID=<?php echo $userID ?>&fname=<?php echo $fnameShow['fname'] ?>&productID=<?php echo $productShow['product_ID'] ?>">
+                <p>ยอดรวม</p>
+                <span name='price' id="price">
+                    <?php
+                    echo $total;
+                    ?>
+                </span>
+                <p>ส่วนลด</p>
+                <span id="discount">0</span>
+                <p>ยอดรวมสุทธิ</p>
+                <span name='total' id="total">
+                    <?php
+                    echo $total;
+                    ?>
+                </span>
+                <input hidden type="text" name="Customer_price" id="priceInput" value="0">
+                <input hidden type="text" name="Customer_discount" id="discountInput" value="0">
+                <input hidden type="text" name="Customer_total" id="totalInput" value="0">
+                <div class="pay-btn">
+                    <?php if (!empty ($cartItems)): ?>
+                        <button type='submit' id="checkout">ดำเนินการชำระเงิน</button>
+                    <?php endif ?>
+                    
+                </div>
+            </form>
         </div>
     </div>
 
@@ -145,9 +154,44 @@ foreach ($cartItems as $item) {
             <?php if (empty ($cartItems)): ?>
                 alert("ไม่มีสินค้าในตะกร้า");
             <?php else: ?>
-                window.location.href = "orderConfirming.php?userID=<?php echo $userID ?>&total=<?php echo $total ?>&fname=<?php echo $fnameShow['fname'] ?>";
+                document.getElementById('priceInput').value = document.getElementById('price').innerText;
+                document.getElementById('discountInput').value = document.getElementById('discount').innerText;
+                document.getElementById('totalInput').value = document.getElementById('total').innerText;
+                window.location.href = "orderConfirming.php?userID=<?php echo $userID ?>&fname=<?php echo $fnameShow['fname'] ?>";
             <?php endif ?>
         });
+
+        function applyCoupon() {
+            var couponCode = document.getElementById("coupon_code").value;
+            var productPrice = parseFloat(document.getElementById('price').innerText);
+
+            if (couponCode === "20%OFF") {
+                // กรอกรหัสส่วนลด "20%OFF" ได้ส่วนลด 20%
+                var discountPercentage = 20;
+                var discountAmount = (productPrice * discountPercentage) / 100;
+                var discountedPrice = productPrice - discountAmount;
+
+                // แสดงค่าส่วนลดและราคาใหม่
+                document.getElementById('discount').innerText = discountAmount.toFixed(0);
+                document.getElementById('total').innerText = discountedPrice.toFixed(0);
+                document.getElementById("output").innerHTML = "";
+            }
+            else if (couponCode === "NEWMEMBER") {
+                // กรอกรหัสส่วนลด "20%OFF" ได้ส่วนลด 20%
+                var discountPercentage = 50;
+                var discountAmount = (productPrice * discountPercentage) / 100;
+                var discountedPrice = productPrice - discountAmount;
+
+                // แสดงค่าส่วนลดและราคาใหม่
+                document.getElementById('discount').innerText = discountAmount.toFixed(0);
+                document.getElementById('total').innerText = discountedPrice.toFixed(0);
+                document.getElementById("output").innerHTML = "";
+            }
+            else {
+                // รหัสไม่ถูกต้องหรือหมดอายุ
+                document.getElementById("output").innerHTML = "รหัสส่วนลดไม่ถูกต้อง";
+            }
+        }
     </script>
 </body>
 

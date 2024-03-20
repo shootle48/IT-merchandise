@@ -73,7 +73,7 @@ if (isset ($_POST['addToCart']) && $is_logged_in) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="style/detailProduct.css?v=<?php echo time() ?>">
+    <link rel="stylesheet" href="style/detailProduct.css">
 </head>
 
 <body>

@@ -38,12 +38,6 @@ $deleteCart = mysqli_prepare($connection, "DELETE FROM carts WHERE user_ID = ?")
 mysqli_stmt_bind_param($deleteCart, "s", $userID);
 mysqli_stmt_execute($deleteCart);
 mysqli_stmt_close($deleteCart);
-
-// Select warranty items
-$warranty = mysqli_prepare($connection, "SELECT * FROM warranty");
-mysqli_stmt_execute($warranty);
-$result = mysqli_stmt_get_result($warranty);
-$warrantyItems = mysqli_fetch_assoc($result);
 ?>
 
 <!DOCTYPE html>
@@ -92,10 +86,6 @@ $warrantyItems = mysqli_fetch_assoc($result);
                         <hr>
                         ยอดรวมสุทธิ: <div class="total">
                             <?php echo $billItem['totalPrice']; ?>
-                        </div>
-                        <hr>
-                        เลขSerial: <div>
-                            <?php echo $warrantyItems['serial']; ?>
                         </div>
                     </div>
                 <?php endforeach; ?>
