@@ -24,21 +24,7 @@ if (isset ($_GET['productID'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>orderConfirming</title>
-    <link rel="stylesheet" href="style/orderConfirming.css">
-    <style>
-        .coupon-box {}
-
-        .coupon-input {
-            width: 100%;
-            padding: 10px;
-            margin-bottom: 10px;
-            box-sizing: border-box;
-        }
-
-        .output {
-            margin-top: 40px;
-        }
-    </style>
+    <link rel="stylesheet" href="style/orderConfirming.css?v=<?php echo time() ?>">
 
 </head>
 
@@ -83,8 +69,8 @@ if (isset ($_GET['productID'])) {
                         echo $price;
                         ?>
                     </span>
-                    <p>ส่วนลด</p>
-                    <span name='discount' id="discount">
+                    <p style="color:red;">ส่วนลด</p>
+                    <span style="color:red;" name='discount' id="discount">
                         <?php
                         echo $discount
                         ?>

@@ -1,5 +1,5 @@
 <?php
-require ("../../back-end/database/db.php");
+require("../../back-end/database/db.php");
 
 $userID = $_GET['userID'];
 $fname = $_GET['fname'];
@@ -55,40 +55,49 @@ mysqli_stmt_close($deleteCart);
     <div class="Container">
         <div class="Showdetail">
             <div class="body">
-                <?php foreach ($billItems as $billItem): ?>
-                    <div class='detail'>
-                        รหัสใบสั่งซื้อ: <div class="billID">
-                            <?php echo $billItem['bill_ID']; ?>
-                        </div>
-                        <hr>
-                        ชื่อผู้รับ: <div class="name">
-                            <?php echo $billItem['emp_Name']; ?>
-                        </div>
-                        <hr>
-                        เบอร์โทร: <div class="tel">
-                            <?php echo $billItem['tel']; ?>
-                        </div>
-                        <hr>
-                        ที่อยู่ในการจัดส่ง: <div class="address">
-                            <?php echo $billItem['address']; ?>
-                        </div>
-                        <hr>
-                        <h4>รายละเอียดสินค้า</h4>
-                        <hr>
-                        <div class="productShow">
-                            <?php foreach ($productsByBill[$billItem['bill_ID']] as $product): ?>
-                                <div>
-                                    <?php echo $product['product_name']; ?> -
-                                    <?php echo $product['product_price']; ?>
+                <?php if (empty($billItems)): ?>
+                    <p>No bills found for user <?php echo $fname; ?></p>
+                <?php else: ?>
+                    <?php foreach ($billItems as $billItem): ?>
+                        <div class='detail'>
+                            รหัสใบสั่งซื้อ: <div class="billID">
+                                <?php echo $billItem['bill_ID']; ?>
+                            </div>
+                            <hr>
+                            ชื่อผู้รับ: <div class="name">
+                                <?php echo $billItem['emp_Name']; ?>
+                            </div>
+                            <hr>
+                            เบอร์โทร: <div class="tel">
+                                <?php echo $billItem['tel']; ?>
+                            </div>
+                            <hr>
+                            ที่อยู่ในการจัดส่ง: <div class="address">
+                                <?php echo $billItem['address']; ?>
+                            </div>
+                            <hr>
+                            <h4>รายละเอียดสินค้า</h4>
+                            <hr>
+                            <?php if (!empty($productsByBill[$billItem['bill_ID']])): ?>
+                                <div class="productShow">
+                                    <?php foreach ($productsByBill[$billItem['bill_ID']] as $product): ?>
+                                        <div>
+                                            <?php echo $product['product_name']; ?> |
+                                            จำนวน&nbsp<?php echo $product['quantity'];?>&nbspชิ้น |
+                                            ราคา/ชิ้น&nbsp<?php echo $product['product_price']; ?>
+                                        </div>
+                                    <?php endforeach; ?>
                                 </div>
-                            <?php endforeach; ?>
+                            <?php else: ?>
+                                <p>No products found for this bill.</p>
+                            <?php endif; ?>
+                            <hr>
+                            ยอดรวมสุทธิ: <div class="total">
+                                <?php echo $billItem['totalPrice']; ?>
+                            </div>
                         </div>
-                        <hr>
-                        ยอดรวมสุทธิ: <div class="total">
-                            <?php echo $billItem['totalPrice']; ?>
-                        </div>
-                    </div>
-                <?php endforeach; ?>
+                    <?php endforeach; ?>
+                <?php endif; ?>
             </div>
         </div>
     </div>

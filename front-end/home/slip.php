@@ -48,7 +48,6 @@ $userID = $_GET['userID'];
             <button type="submit">ส่งสลิป</button>
         </div>
     </form>
-    <?php require ("components/footer.php") ?>
 </body>
 
 </html>

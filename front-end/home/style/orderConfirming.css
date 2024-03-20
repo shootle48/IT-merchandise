@@ -40,7 +40,8 @@ h3 {
 }
 .order-right {
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
+  align-items: end;
 }
 .inputData {
   display: flex;

@@ -41,7 +41,7 @@ foreach ($cartItems as $item) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cart</title>
-    <link rel="stylesheet" href="style/cart.css">
+    <link rel="stylesheet" href="style/cart.css?v=<?php echo time() ?>">
 </head>
 
 <body>
@@ -115,27 +115,29 @@ foreach ($cartItems as $item) {
                     <input type="text" id="coupon_code" class="coupon-input" name="coupon-input"
                         placeholder="กรอกรหัสส่วนลด">
                     <br>
-                    <button onclick="applyCoupon()" style="width: 100%;">ยืนยันรหัสส่วนลด</button><br>
+                    <button onclick="applyCoupon()" style="width: 100%;" class="btn-coupon">ใช้งานส่วนลด</button><br>
                     <div id="output" class="output"></div>
                 </div>
             </div>
             <!-- Pay button -->
             <form method="POST"
                 action="orderConfirming.php?userID=<?php echo $userID ?>&fname=<?php echo $fnameShow['fname'] ?>&productID=<?php echo $productShow['product_ID'] ?>">
-                <p>ยอดรวม</p>
-                <span name='price' id="price">
-                    <?php
-                    echo $total;
-                    ?>
-                </span>
-                <p>ส่วนลด</p>
-                <span id="discount">0</span>
-                <p>ยอดรวมสุทธิ</p>
-                <span name='total' id="total">
-                    <?php
-                    echo $total;
-                    ?>
-                </span>
+                <div class="price">
+                    <p>ยอดรวม</p>
+                    <span name='price' id="price">
+                        <?php
+                        echo $total;
+                        ?>
+                    </span>
+                    <p style="color:red;">ส่วนลด</p>
+                    <span style="color:red;" id="discount">0</span>
+                    <p>ยอดรวมสุทธิ</p>
+                    <span name='total' id="total">
+                        <?php
+                        echo $total;
+                        ?>
+                    </span>
+                </div>
                 <input hidden type="text" name="Customer_price" id="priceInput" value="0">
                 <input hidden type="text" name="Customer_discount" id="discountInput" value="0">
                 <input hidden type="text" name="Customer_total" id="totalInput" value="0">
@@ -143,7 +145,7 @@ foreach ($cartItems as $item) {
                     <?php if (!empty ($cartItems)): ?>
                         <button type='submit' id="checkout">ดำเนินการชำระเงิน</button>
                     <?php endif ?>
-                    
+
                 </div>
             </form>
         </div>

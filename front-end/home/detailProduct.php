@@ -35,10 +35,12 @@ if (isset ($_POST['addToCart']) && $is_logged_in) {
         mysqli_stmt_execute($stmt_update);
         mysqli_stmt_close($stmt_update);
 
-        $stmt_insert = mysqli_prepare($connection, "INSERT INTO cartStock (user_ID, product_ID, product_name, product_price) VALUES (?, ?, ?, ?)");
-        mysqli_stmt_bind_param($stmt_insert, "ssss", $userID, $productID, $productShow['name_product'], $productShow['product_price']);
-        mysqli_stmt_execute($stmt_insert);
-        mysqli_stmt_close($stmt_insert);
+        $row = mysqli_fetch_assoc($result_check);
+        $quantity = (int) $row['quantity'] + (int) $quantity; // Update quantity to the existing value
+        $stmt_update = mysqli_prepare($connection, "UPDATE cartStock SET quantity = ? WHERE product_ID = ? AND user_ID = ?");
+        mysqli_stmt_bind_param($stmt_update, "sss", $quantity, $productID, $userID);
+        mysqli_stmt_execute($stmt_update);
+        mysqli_stmt_close($stmt_update);
     } else {
         // Product doesn't exist in the cart, insert it
         $stmt_insert = mysqli_prepare($connection, "INSERT INTO carts (product_ID, user_ID, quantity) VALUES (?, ?, ?)");
@@ -46,8 +48,8 @@ if (isset ($_POST['addToCart']) && $is_logged_in) {
         mysqli_stmt_execute($stmt_insert);
         mysqli_stmt_close($stmt_insert);
 
-        $stmt_insert = mysqli_prepare($connection, "INSERT INTO cartStock (user_ID, product_ID, product_name, product_price) VALUES (?, ?, ?, ?)");
-        mysqli_stmt_bind_param($stmt_insert, "ssss", $userID, $productID, $productShow['name_product'], $productShow['product_price']);
+        $stmt_insert = mysqli_prepare($connection, "INSERT INTO cartStock (user_ID, product_ID, product_name, product_price, quantity) VALUES (?, ?, ?, ?, ?)");
+        mysqli_stmt_bind_param($stmt_insert, "sssss", $userID, $productID, $productShow['name_product'], $productShow['product_price'],$quantity);
         mysqli_stmt_execute($stmt_insert);
         mysqli_stmt_close($stmt_insert);
     }
